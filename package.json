@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "concurrently": "^9.0.1"
+  },
+  "scripts": {
+    "start": "concurrently \"cd React && npm run dev\" \"cd Laravel && php artisan serve\"",
+    "server": "nodemon server.js",
+    "client": "cd client && npm start"
+  }
+}
