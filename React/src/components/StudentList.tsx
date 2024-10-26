@@ -1,15 +1,36 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./ui/table";
 
-function App() {
-  const [students, setStudents] = useState([]);
+interface Student {
+  id: number;
+  name: string;
+  age: number;
+  email: string;
+  phone: string;
+  address: string;
+}
 
-  const [loading, setLoading] = useState(false);
-  const [loadingId, setLoadingId] = useState(null);
-  const [loadingEdit, setLoadingEdit] = useState(false);
-  const [loadingIdEdit, setLoadingIdEdit] = useState(null);
+const StudentList = () => {
+  const [students, setStudents] = useState<Student[]>([]);
 
-  const [form, setForm] = useState({
+  const [loading, setLoading] = useState<boolean>(false);
+  const [loadingId, setLoadingId] = useState<number | undefined>(undefined);
+  const [loadingEdit, setLoadingEdit] = useState<boolean>(false);
+  const [loadingIdEdit, setLoadingIdEdit] = useState<number | undefined>(
+    undefined
+  );
+
+  const [form, setForm] = useState<Student>({
+    id: 0,
     name: "",
     age: 0,
     address: "",
@@ -32,7 +53,7 @@ function App() {
     fetchData();
   }, []);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (id: number) => {
     setLoadingId(id);
     setLoading(true);
     try {
@@ -47,12 +68,12 @@ function App() {
     }
   };
 
-  const handleEdit = (item) => {
+  const handleEdit = (item: Student) => {
     setForm(item);
-    document.getElementById("edit_modal").showModal();
+    (document.getElementById("edit_modal") as HTMLDialogElement).showModal();
   };
 
-  const handleSave = async (id) => {
+  const handleSave = async (id: number) => {
     setLoadingIdEdit(id);
     setLoadingEdit(true);
     try {
@@ -68,7 +89,7 @@ function App() {
     }
   };
 
-  const handleForm = (e) => {
+  const handleForm = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm((prevForm) => ({
       ...prevForm,
@@ -80,52 +101,51 @@ function App() {
     <>
       <div className="px-10">
         <h1 className="text-3xl font-bold text-center py-10">Student List</h1>
-        <div className="overflow-x-auto">
-          <table className="table table-lg">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Address</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {students.map((student) => (
-                <tr key={student.id}>
-                  <td>{student.id}</td>
-                  <td>{student.name}</td>
-                  <td>{student.age}</td>
-                  <td>{student.address}</td>
-                  <td>{student.phone}</td>
-                  <td>{student.email}</td>
-                  <td className="flex gap-3">
-                    <button
-                      className="btn btn-accent"
-                      onClick={() => handleEdit(student)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      className="btn btn-error"
-                      onClick={() => handleDelete(student.id)}
-                      disabled={loadingId == student.id}
-                    >
-                      {loadingId == student.id && loading ? (
-                        <span className="loading loading-spinner loading-sm"></span>
-                      ) : (
-                        "Delete"
-                      )}
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <Table>
+          <TableCaption>A list of your recent invoices.</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[100px]">Id</TableHead>
+              <TableHead>Name</TableHead>
+              <TableHead>Age</TableHead>
+              <TableHead>Address</TableHead>
+              <TableHead>Phone</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Action</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {students.map((student) => (
+              <TableRow key={student.id}>
+                <TableCell>{student.id}</TableCell>
+                <TableCell>{student.name}</TableCell>
+                <TableCell>{student.age}</TableCell>
+                <TableCell>{student.address}</TableCell>
+                <TableCell>{student.phone}</TableCell>
+                <TableCell>{student.email}</TableCell>
+                <TableCell className="flex gap-3">
+                  <button
+                    className="btn btn-accent"
+                    onClick={() => handleEdit(student)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="btn btn-error"
+                    onClick={() => handleDelete(student.id)}
+                    disabled={loadingId == student.id}
+                  >
+                    {loadingId == student.id && loading ? (
+                      <span className="loading loading-spinner loading-sm"></span>
+                    ) : (
+                      "Delete"
+                    )}
+                  </button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
 
         <dialog id="edit_modal" className="modal">
           <div className="modal-box flex flex-col gap-4">
@@ -184,11 +204,7 @@ function App() {
               className="btn btn-primary"
               onClick={() => handleSave(form.id)}
             >
-              {loadingIdEdit == form.id && loadingEdit ? (
-                <span className="loading loading-spinner loading-sm"></span>
-              ) : (
-                "Save"
-              )}
+              Save
             </button>
           </div>
           <form method="dialog" className="modal-backdrop">
@@ -198,6 +214,6 @@ function App() {
       </div>
     </>
   );
-}
+};
 
-export default App;
+export default StudentList;
