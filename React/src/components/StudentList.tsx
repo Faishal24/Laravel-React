@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
+import { Button } from "./ui/button";
 
 interface Student {
   id: number;
@@ -102,7 +103,6 @@ const StudentList = () => {
       <div className="px-10">
         <h1 className="text-3xl font-bold text-center py-10">Student List</h1>
         <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">Id</TableHead>
@@ -124,23 +124,21 @@ const StudentList = () => {
                 <TableCell>{student.phone}</TableCell>
                 <TableCell>{student.email}</TableCell>
                 <TableCell className="flex gap-3">
-                  <button
+                  <Button
                     className="btn btn-accent"
                     onClick={() => handleEdit(student)}
                   >
                     Edit
-                  </button>
-                  <button
+                  </Button>
+
+                  <Button
+                    variant="destructive"
                     className="btn btn-error"
                     onClick={() => handleDelete(student.id)}
                     disabled={loadingId == student.id}
                   >
-                    {loadingId == student.id && loading ? (
-                      <span className="loading loading-spinner loading-sm"></span>
-                    ) : (
-                      "Delete"
-                    )}
-                  </button>
+                    Delete
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
