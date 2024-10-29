@@ -3,12 +3,22 @@ import axios from "axios";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "./ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 import { Button } from "./ui/button";
 
 interface Student {
@@ -71,7 +81,6 @@ const StudentList = () => {
 
   const handleEdit = (item: Student) => {
     setForm(item);
-    (document.getElementById("edit_modal") as HTMLDialogElement).showModal();
   };
 
   const handleSave = async (id: number) => {
@@ -124,12 +133,96 @@ const StudentList = () => {
                 <TableCell>{student.phone}</TableCell>
                 <TableCell>{student.email}</TableCell>
                 <TableCell className="flex gap-3">
-                  <Button
-                    className="btn btn-accent"
-                    onClick={() => handleEdit(student)}
-                  >
-                    Edit
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button
+                        className="btn btn-accent"
+                        onClick={() => handleEdit(student)}
+                      >
+                        Edit
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>Edit student profile</DialogTitle>
+                        <DialogDescription>
+                          Make changes to your profile here. Click save when
+                          you're done.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="grid gap-4 py-4">
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="name" className="text-right">
+                            Name
+                          </Label>
+                          <Input
+                            id="name"
+                            value={form.name}
+                            className="col-span-3"
+                            onChange={handleForm}
+                            name="name"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="age" className="text-right">
+                            Age
+                          </Label>
+                          <Input
+                            id="age"
+                            defaultValue={form.age}
+                            className="col-span-3"
+                            type="number"
+                            onChange={handleForm}
+                            name="age"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="address" className="text-right">
+                            Address
+                          </Label>
+                          <Input
+                            id="address"
+                            defaultValue={form.address}
+                            className="col-span-3"
+                            onChange={handleForm}
+                            name="address"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="phone" className="text-right">
+                            Phone
+                          </Label>
+                          <Input
+                            id="phone"
+                            defaultValue={form.phone}
+                            className="col-span-3"
+                            onChange={handleForm}
+                            name="phone"
+                          />
+                        </div>
+                        <div className="grid grid-cols-4 items-center gap-4">
+                          <Label htmlFor="email" className="text-right">
+                            Email
+                          </Label>
+                          <Input
+                            id="email"
+                            defaultValue={form.email}
+                            className="col-span-3"
+                            onChange={handleForm}
+                            name="email"
+                          />
+                        </div>
+                      </div>
+                      <DialogFooter>
+                        <Button
+                          type="submit"
+                          onClick={() => handleSave(form.id)}
+                        >
+                          {loadingEdit && loadingIdEdit == form.id ? "Loading" : "Save"}
+                        </Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
 
                   <Button
                     variant="destructive"
@@ -137,7 +230,7 @@ const StudentList = () => {
                     onClick={() => handleDelete(student.id)}
                     disabled={loadingId == student.id}
                   >
-                    Delete
+                    {loading && loadingId == student.id ? "Loading" : "Delete"}
                   </Button>
                 </TableCell>
               </TableRow>
