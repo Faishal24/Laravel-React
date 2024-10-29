@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   Users,
   Home,
@@ -39,10 +40,10 @@ const AppSidebar = () => {
             <SidebarMenu>
               <SidebarMenuItem key="home">
                 <SidebarMenuButton asChild>
-                  <a href="#">
+                  <Link to="/">
                     <Home />
                     <span>Home</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
 
@@ -56,9 +57,9 @@ const AppSidebar = () => {
                 <SidebarMenuSub>
                   <SidebarMenuSubItem>
                     <SidebarMenuButton>
-                      <a href="#">
+                      <Link to="student-list">
                         <span>Student List</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuSubItem>
                   <SidebarMenuSubItem>
