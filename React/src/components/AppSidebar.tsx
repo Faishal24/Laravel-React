@@ -50,21 +50,21 @@ const AppSidebar = () => {
                 <SidebarMenuButton asChild>
                   <a href="#">
                     <FolderKanban />
-                    <span>Kelola Data Siswa</span>
+                    <span>Manage Student Data</span>
                   </a>
                 </SidebarMenuButton>
                 <SidebarMenuSub>
                   <SidebarMenuSubItem>
                     <SidebarMenuButton>
                       <a href="#">
-                        <span>Daftar Siswa</span>
+                        <span>Student List</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuSubItem>
                   <SidebarMenuSubItem>
                     <SidebarMenuButton>
                       <a href="#">
-                        <span>Tambah Siswa</span>
+                        <span>Add Data</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuSubItem>
@@ -82,7 +82,7 @@ const AppSidebar = () => {
                 <SidebarMenuButton asChild>
                   <a href="#">
                     <School />
-                    <span>Pengaturan Kelas</span>
+                    <span>Class Settings</span>
                   </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -91,28 +91,28 @@ const AppSidebar = () => {
                 <SidebarMenuButton asChild>
                   <a href="#">
                     <Users />
-                    <span>Kelola Data Guru</span>
+                    <span>Manage Teacher Data</span>
                   </a>
                 </SidebarMenuButton>
                 <SidebarMenuSub>
                   <SidebarMenuSubItem>
                     <SidebarMenuButton>
                       <a href="#">
-                        <span>Daftar Siswa</span>
+                        <span>Teacher List</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuSubItem>
                   <SidebarMenuSubItem>
                     <SidebarMenuButton>
                       <a href="#">
-                        <span>Tambah Siswa</span>
+                        <span>Add Data</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuSubItem>
                   <SidebarMenuSubItem>
                     <SidebarMenuButton>
                       <a href="#">
-                        <span>Jadwal Pengajaran</span>
+                        <span>Teaching Schedule</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuSubItem>
@@ -123,21 +123,21 @@ const AppSidebar = () => {
                 <SidebarMenuButton asChild>
                   <a href="#">
                     <Book />
-                    <span>Laporan</span>
+                    <span>Report</span>
                   </a>
                 </SidebarMenuButton>
                 <SidebarMenuSub>
                   <SidebarMenuSubItem>
                     <SidebarMenuButton>
                       <a href="#">
-                        <span>Laporan Siswa</span>
+                        <span>Student Report</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuSubItem>
                   <SidebarMenuSubItem>
                     <SidebarMenuButton>
                       <a href="#">
-                        <span>Riwayat Aktivitas</span>
+                        <span>Activity History</span>
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuSubItem>
@@ -148,7 +148,7 @@ const AppSidebar = () => {
                 <SidebarMenuButton asChild>
                   <a href="#">
                     <Settings />
-                    <span>Pengaturan</span>
+                    <span>Settings</span>
                   </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -157,7 +157,7 @@ const AppSidebar = () => {
                 <SidebarMenuButton asChild>
                   <a href="#">
                     <CircleHelp />
-                    <span>Bantuan</span>
+                    <span>Help & Support</span>
                   </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
